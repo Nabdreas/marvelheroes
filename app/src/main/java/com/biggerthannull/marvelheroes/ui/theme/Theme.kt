@@ -1,70 +1,66 @@
 package com.biggerthannull.marvelheroes.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
+import androidx.compose.runtime.CompositionLocalProvider
+import com.biggerthannull.marvelheroes.ui.theme.tokens.DarkColourTokens
+import com.biggerthannull.marvelheroes.ui.theme.tokens.LightColourTokens
 
 @Composable
 fun MarvelHeroesTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+    val typography =
+        MarvelHeroesTheme.MarvelHeroesTypography()
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val colours = if (darkTheme) {
+        darkThemeColours()
+    } else {
+        lightThemeColours()
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
+    val shapes = MarvelHeroesTheme.MarvelHeroesShapes()
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+    CompositionLocalProvider(
+        MarvelHeroesTheme.LocalTypography provides typography,
+        MarvelHeroesTheme.LocalColours provides colours,
+        MarvelHeroesTheme.LocalShapes provides shapes
+    ) {
+        MaterialTheme(
+            content = content
+        )
+    }
+}
+
+private fun darkThemeColours(): MarvelHeroesTheme.MarvelHeroesColours {
+    return MarvelHeroesTheme.MarvelHeroesColours(
+        grey900 = DarkColourTokens.grey900,
+        grey800 = DarkColourTokens.grey800,
+        grey700 = DarkColourTokens.grey700,
+        grey600 = DarkColourTokens.grey600,
+        grey500 = DarkColourTokens.grey500,
+        grey400 = DarkColourTokens.grey400,
+        grey300 = DarkColourTokens.grey300,
+        grey200 = DarkColourTokens.grey200,
+        white = DarkColourTokens.white,
+        black = DarkColourTokens.black,
+        red = DarkColourTokens.red
+    )
+}
+
+private fun lightThemeColours(): MarvelHeroesTheme.MarvelHeroesColours {
+    return MarvelHeroesTheme.MarvelHeroesColours(
+        grey900 = LightColourTokens.grey900,
+        grey800 = LightColourTokens.grey800,
+        grey700 = LightColourTokens.grey700,
+        grey600 = LightColourTokens.grey600,
+        grey500 = LightColourTokens.grey500,
+        grey400 = LightColourTokens.grey400,
+        grey300 = LightColourTokens.grey300,
+        grey200 = LightColourTokens.grey200,
+        white = LightColourTokens.white,
+        black = LightColourTokens.black,
+        red = LightColourTokens.red
     )
 }
