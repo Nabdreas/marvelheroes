@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "MarvelHeroes"
 include(":app")
 include(":data:comics")
+include(":domain:comics")
