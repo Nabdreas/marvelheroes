@@ -1,5 +1,7 @@
 package com.biggerthannull.marvelheroes.domain.comics.di
 
+import com.biggerthannull.marvelheroes.domain.comics.usecase.GetComicBookDetailsUseCase
+import com.biggerthannull.marvelheroes.domain.comics.usecase.GetComicBookDetailsUseCaseImpl
 import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCase
 import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCaseImpl
 import dagger.Binds
@@ -12,4 +14,7 @@ import dagger.hilt.android.components.ViewModelComponent
 interface DomainModule {
     @Binds
     fun bindGetReleasedComicBooks(impl: GetReleasedComicBooksUseCaseImpl): GetReleasedComicBooksUseCase
+
+    @Binds
+    fun bindGetComicBookDetailsUseCase(impl: GetComicBookDetailsUseCaseImpl): GetComicBookDetailsUseCase
 }
