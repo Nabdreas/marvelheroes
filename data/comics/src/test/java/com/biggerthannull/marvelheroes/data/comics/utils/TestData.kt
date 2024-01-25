@@ -3,7 +3,7 @@ package com.biggerthannull.marvelheroes.data.comics.utils
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ComicBookDTO
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ComicsDataDTO
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ComicsResultDTO
-import com.biggerthannull.marvelheroes.domain.comics.usecase.ReleasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBooks
 
 object TestData {
     private val comicBook = ComicsResultDTO(

@@ -1,4 +1,4 @@
-package com.biggerthannull.marvelheroes.domain.comics.usecase
+package com.biggerthannull.marvelheroes.domain.comics.usecase.models
 
 sealed class ComicsResult {
     data object Failed : ComicsResult()

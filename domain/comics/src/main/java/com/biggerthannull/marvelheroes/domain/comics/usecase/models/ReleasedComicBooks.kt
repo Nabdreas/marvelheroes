@@ -1,4 +1,4 @@
-package com.biggerthannull.marvelheroes.domain.comics.usecase
+package com.biggerthannull.marvelheroes.domain.comics.usecase.models
 
 data class ReleasedComicBooks(
     val id: Int,

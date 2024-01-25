@@ -4,7 +4,7 @@ import com.biggerthannull.marvelheroes.data.comics.datasource.ComicBooksDataSour
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.expectedComicsJSONResponse
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.releasedComicBooks
 import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
-import com.biggerthannull.marvelheroes.domain.comics.usecase.ComicsResult
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

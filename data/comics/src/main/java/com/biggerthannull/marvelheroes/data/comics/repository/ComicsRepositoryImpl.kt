@@ -3,8 +3,8 @@ package com.biggerthannull.marvelheroes.data.comics.repository
 import com.biggerthannull.marvelheroes.data.comics.datasource.ComicBooksDataSource
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ComicsResultDTO
 import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
-import com.biggerthannull.marvelheroes.domain.comics.usecase.ComicsResult
-import com.biggerthannull.marvelheroes.domain.comics.usecase.ReleasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBooks
 import javax.inject.Inject
 
 class ComicsRepositoryImpl @Inject constructor(

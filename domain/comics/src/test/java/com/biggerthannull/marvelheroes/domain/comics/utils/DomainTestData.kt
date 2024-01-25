@@ -1,6 +1,6 @@
 package com.biggerthannull.marvelheroes.domain.comics.utils
 
-import com.biggerthannull.marvelheroes.domain.comics.usecase.ReleasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBooks
 
 object DomainTestData {
     val releasedComicBooks = ReleasedComicBooks(
