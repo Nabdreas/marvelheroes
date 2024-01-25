@@ -19,7 +19,7 @@ import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
 import com.biggerthannull.marvelheroes.feature.feed.ui.composables.elements.IconImageElement
 
 @Composable
-fun HomeFeedListItemComponent(comicBook: ReleasedComicBook,  onComicBookClicked: (id: Int) -> Unit) {
+fun HomeFeedListItemComponent(comicBook: ReleasedComicBook, onComicBookClicked: (id: Int) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
