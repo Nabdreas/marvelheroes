@@ -4,7 +4,7 @@ import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
 import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCase
 import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCaseImpl
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
-import com.biggerthannull.marvelheroes.domain.comics.utils.DomainTestData.releasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.utils.DomainTestData.releasedComicBook
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
@@ -19,14 +19,14 @@ class GetReleasedComicBooksUseCaseTest {
     @Test
     fun `returns comic books successfully`() = runTest {
         // Given
-        coEvery { repo.getComics() } returns ComicsResult.Success(listOf(releasedComicBooks))
+        coEvery { repo.getComics() } returns ComicsResult.Success(listOf(releasedComicBook))
 
         // When
         val result = sut.execute()
 
         // Then
         assertTrue(result is ComicsResult.Success)
-        assertEquals(listOf(releasedComicBooks), (result as ComicsResult.Success).data)
+        assertEquals(listOf(releasedComicBook), (result as ComicsResult.Success).data)
     }
 
     @Test

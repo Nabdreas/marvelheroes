@@ -1,8 +1,10 @@
-package com.biggerthannull.marvelheroes.ui.theme.tokens
+package com.biggerthannull.marvelheroes.feature.feed.theme.tokens
 
 import androidx.compose.ui.graphics.Color
 
-object LightColourTokens {
+
+object DarkColourTokens {
+    // These values can be changed according to dark theme design system
     val grey900: Color = Color(0xFF141414)
     val grey800: Color = Color(0xFF2F2F2F)
     val grey700: Color = Color(0xFF585858)

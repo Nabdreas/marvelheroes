@@ -7,7 +7,7 @@ import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetails
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetailsResult
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
-import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBook
 import javax.inject.Inject
 
 class ComicsRepositoryImpl @Inject constructor(
@@ -38,9 +38,9 @@ class ComicsRepositoryImpl @Inject constructor(
     }
 
 
-    private fun mapComicBookDTOToDomain(response: List<ComicsResultDTO>): List<ReleasedComicBooks> {
+    private fun mapComicBookDTOToDomain(response: List<ComicsResultDTO>): List<ReleasedComicBook> {
         return response.map { comicBookDto ->
-            ReleasedComicBooks(
+            ReleasedComicBook(
                 id = comicBookDto.id,
                 digitalId = comicBookDto.digitalId,
                 title = comicBookDto.title,
@@ -59,7 +59,8 @@ class ComicsRepositoryImpl @Inject constructor(
     }
 
     private fun buildThumbnail(thumbnail: ThumbnailDTO): String {
-        return thumbnail.path + "." + thumbnail.extension
+        val nonSecureThumbnail = thumbnail.path + "." + thumbnail.extension
+        return nonSecureThumbnail.replace("http://", "https://")
 
     }
 }

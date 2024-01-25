@@ -1,10 +1,10 @@
 package com.biggerthannull.marvelheroes.domain.comics.utils
 
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetails
-import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBooks
+import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBook
 
 object DomainTestData {
-    val releasedComicBooks = ReleasedComicBooks(
+    val releasedComicBook = ReleasedComicBook(
         id = 91992,
         digitalId = 56203,
         title = "Fantastic Four by Dan Slott Vol. 1 (Trade Paperback)",

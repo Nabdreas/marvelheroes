@@ -17,3 +17,4 @@ rootProject.name = "MarvelHeroes"
 include(":app")
 include(":data:comics")
 include(":domain:comics")
+include(":feature:feed")

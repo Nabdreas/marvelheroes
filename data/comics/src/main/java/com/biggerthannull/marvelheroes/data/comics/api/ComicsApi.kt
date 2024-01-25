@@ -8,20 +8,21 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ComicsApi {
-    @GET("/comics")
+    @GET("comics")
     suspend fun getComics(
         @Query("ts") ts: String = BuildConfig.MARVEL_TS,
-        @Query("api_key") apiKey: String = BuildConfig.MARVEL_API_KEY,
+        @Query("apikey") apiKey: String = BuildConfig.MARVEL_API_KEY,
         @Query("hash") hash: String = BuildConfig.MARVEL_HAS,
-        @Query("orderBy") orderBy: String = "title",
-        @Query("limit") limit: Int = 1
+        @Query("formatType") formatType: String = "comic",
+        @Query("orderBy") orderBy: String = "-onsaleDate",
+        @Query("limit") limit: Int = 15
     ): Response<ComicBookDTO>
 
-    @GET("/comics/{id}")
+    @GET("comics/{id}")
     suspend fun getComicBook(
         @Path("id") id: Int,
         @Query("ts") ts: String = BuildConfig.MARVEL_TS,
-        @Query("api_key") apiKey: String = BuildConfig.MARVEL_API_KEY,
+        @Query("apikey") apiKey: String = BuildConfig.MARVEL_API_KEY,
         @Query("hash") hash: String = BuildConfig.MARVEL_HAS
     ): Response<ComicBookDTO>
 }

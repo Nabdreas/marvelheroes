@@ -4,7 +4,7 @@ import com.biggerthannull.marvelheroes.data.comics.datasource.ComicBooksDataSour
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.comicBook
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.comicBookDetails
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.expectedComicsJSONResponse
-import com.biggerthannull.marvelheroes.data.comics.utils.TestData.releasedComicBooks
+import com.biggerthannull.marvelheroes.data.comics.utils.TestData.releasedComicBook
 import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetailsResult
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
@@ -31,7 +31,7 @@ class ComicsRepositoryTest {
 
         // Then
         assertTrue(result is ComicsResult.Success)
-        assertEquals(listOf(releasedComicBooks), (result as ComicsResult.Success).data)
+        assertEquals(listOf(releasedComicBook), (result as ComicsResult.Success).data)
     }
 
     @Test

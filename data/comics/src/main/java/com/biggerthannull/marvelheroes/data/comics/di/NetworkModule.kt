@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     companion object {
-        const val BASE_URL = "https://gateway.marvel.com/v1/public"
+        const val BASE_URL = "https://gateway.marvel.com/v1/public/"
     }
 
     @Provides

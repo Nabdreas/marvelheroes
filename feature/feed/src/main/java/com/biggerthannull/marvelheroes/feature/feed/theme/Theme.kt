@@ -1,11 +1,11 @@
-package com.biggerthannull.marvelheroes.ui.theme
+package com.biggerthannull.marvelheroes.feature.feed.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import com.biggerthannull.marvelheroes.ui.theme.tokens.DarkColourTokens
-import com.biggerthannull.marvelheroes.ui.theme.tokens.LightColourTokens
+import com.biggerthannull.marvelheroes.feature.feed.theme.tokens.DarkColourTokens
+import com.biggerthannull.marvelheroes.feature.feed.theme.tokens.LightColourTokens
 
 @Composable
 fun MarvelHeroesTheme(
