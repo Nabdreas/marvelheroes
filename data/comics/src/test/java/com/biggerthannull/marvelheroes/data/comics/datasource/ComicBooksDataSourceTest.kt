@@ -1,8 +1,10 @@
 package com.biggerthannull.marvelheroes.data.comics.datasource
 
 import com.biggerthannull.marvelheroes.data.comics.api.ComicsApi
+import com.biggerthannull.marvelheroes.data.comics.exceptions.ComicBookDetailsException
 import com.biggerthannull.marvelheroes.data.comics.exceptions.ComicBooksResponseException
 import com.biggerthannull.marvelheroes.data.comics.utils.FileUtil
+import com.biggerthannull.marvelheroes.data.comics.utils.TestData.comicBook
 import com.biggerthannull.marvelheroes.data.comics.utils.TestData.expectedComicsJSONResponse
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
@@ -33,7 +35,7 @@ class ComicBooksDataSourceTest {
     }
 
     @Test
-    fun `should return valid json response`() = runTest {
+    fun `should return valid json response of comics books`() = runTest {
         // Given
         val sut = `given system under test`()
         `server 200 response`()
@@ -47,7 +49,7 @@ class ComicBooksDataSourceTest {
     }
 
     @Test
-    fun `should return an error`() = runTest {
+    fun `should return an error when requesting list of comic books`() = runTest {
         // Given
         val sut = `given system under test`()
         `server 401 response`()
@@ -58,6 +60,35 @@ class ComicBooksDataSourceTest {
         // Then
         assertTrue(result.isFailure)
         assertTrue(result.exceptionOrNull() is ComicBooksResponseException)
+    }
+
+    @Test
+    fun `should return valid json response for comic book details`() = runTest {
+        // Given
+        val sut = `given system under test`()
+        `server 200 response`()
+
+        // When
+        val result = sut.getComicBookDetails(35486)
+
+        // Then
+        assertTrue(result.isSuccess)
+        assertEquals(listOf(comicBook), result.getOrNull())
+    }
+
+
+    @Test
+    fun `should return an error when requesting comic book details`() = runTest {
+        // Given
+        val sut = `given system under test`()
+        `server 401 response`()
+
+        // When
+        val result = sut.getComicBookDetails(43256)
+
+        // Then
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull() is ComicBookDetailsException)
     }
 
     private fun `given system under test`(): ComicBooksDataSource {
