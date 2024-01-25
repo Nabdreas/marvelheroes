@@ -16,5 +16,13 @@ data class ComicsDataDTO(
 data class ComicsResultDTO(
     val id: Int,
     val digitalId: Int,
-    val title: String
+    val title: String,
+    val description: String,
+    val thumbnail: ThumbnailDTO
+)
+
+@Keep
+data class ThumbnailDTO(
+    val path: String,
+    val extension: String
 )

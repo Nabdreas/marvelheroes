@@ -1,8 +1,8 @@
 package com.biggerthannull.marvelheroes.domain.comics
 
 import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
-import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooks
-import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksImpl
+import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCase
+import com.biggerthannull.marvelheroes.domain.comics.usecase.GetReleasedComicBooksUseCaseImpl
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
 import com.biggerthannull.marvelheroes.domain.comics.utils.DomainTestData.releasedComicBooks
 import io.mockk.coEvery
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class GetReleasedComicBooksTest {
+class GetReleasedComicBooksUseCaseTest {
     private val repo: ComicsRepository = mockk()
-    private val sut: GetReleasedComicBooks = GetReleasedComicBooksImpl(repo)
+    private val sut: GetReleasedComicBooksUseCase = GetReleasedComicBooksUseCaseImpl(repo)
 
     @Test
-    fun `returns comic books successfully`() = runTest{
+    fun `returns comic books successfully`() = runTest {
         // Given
         coEvery { repo.getComics() } returns ComicsResult.Success(listOf(releasedComicBooks))
 
@@ -30,7 +30,7 @@ class GetReleasedComicBooksTest {
     }
 
     @Test
-    fun `returns NO comic books `() = runTest{
+    fun `returns NO comic books `() = runTest {
         // Given
         coEvery { repo.getComics() } returns ComicsResult.Failed
 
