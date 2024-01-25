@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2024 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2024 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2024 MARVEL</a>",
+  "etag": "ff73f1ef973776b8b4397f70872517a714e80b69",
+  "data": {
+    "offset": 0,
+    "limit": 1,
+    "total": 58857,
+    "count": 1,
+    "results": [
+      {
+        "id": 91992,
+        "digitalId": 56203,
+        "title": "Fantastic Four by Dan Slott Vol. 1 (Trade Paperback)"
+      }
+    ]
+  }
+}
