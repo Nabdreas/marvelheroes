@@ -1,6 +1,5 @@
 package com.biggerthannull.marvelheroes.feature.feed.ui.composables.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +15,7 @@ import com.biggerthannull.marvelheroes.feature.feed.ui.composables.elements.Load
 import com.biggerthannull.marvelheroes.feature.feed.viewmodel.state.FeedUIState
 
 @Composable
-fun HomeFeedScreen(uiState: FeedUIState) {
+fun HomeFeedScreen(uiState: FeedUIState, onComicBookClicked: (id: Int) -> Unit) {
     Column(
         modifier = Modifier
             .background(MarvelHeroesTheme.colour.black)
@@ -28,9 +27,9 @@ fun HomeFeedScreen(uiState: FeedUIState) {
             }
 
             is FeedUIState.Success -> {
-                HomeFeedVerticalListComponent(data = uiState.comics) { id ->
-                    Log.d("Item clicked: ", "$id")
-                }
+                HomeFeedVerticalListComponent(data = uiState.comics, onComicBookClicked = { id ->
+                    onComicBookClicked(id)
+                })
             }
 
             is FeedUIState.Error -> {
@@ -48,6 +47,10 @@ fun HomeFeedScreen(uiState: FeedUIState) {
 @Composable
 fun HomeFeedScreenPreview() {
     MarvelHeroesTheme {
-        HomeFeedScreen(uiState = FeedUIState.Loading)
+        HomeFeedScreen(
+            uiState = FeedUIState.Loading,
+            onComicBookClicked = {
+                // no-op
+            })
     }
 }

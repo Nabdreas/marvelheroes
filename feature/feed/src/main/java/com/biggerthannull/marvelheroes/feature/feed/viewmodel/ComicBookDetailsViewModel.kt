@@ -19,11 +19,11 @@ class ComicBookDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val useCaseGetComicBookDetailsUseCase: GetComicBookDetailsUseCase
 ): ViewModel() {
-    val bathroomId = savedStateHandle.get<String>("COMIC_BOOK_ID").orEmpty()
+    private val comicBookId = savedStateHandle.get<Int>("comicBookId")?: 0
 
     val uiState: StateFlow<DetailsUIState> = flow {
         emit(DetailsUIState.Loading)
-        val result = useCaseGetComicBookDetailsUseCase.execute(1)
+        val result = useCaseGetComicBookDetailsUseCase.execute(comicBookId)
         emit(
             if (result is ComicBookDetailsResult.Success) {
                 DetailsUIState.Success(result.data)

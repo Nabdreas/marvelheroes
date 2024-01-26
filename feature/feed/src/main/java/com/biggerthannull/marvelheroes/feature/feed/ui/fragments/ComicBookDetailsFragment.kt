@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.biggerthannull.marvelheroes.feature.feed.ui.composables.screens.ComicDetailsScreen
 import com.biggerthannull.marvelheroes.feature.feed.viewmodel.ComicBookDetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ComicBookDetailsFragment : Fragment() {
 
     private val viewModel: ComicBookDetailsViewModel by viewModels()

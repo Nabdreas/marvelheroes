@@ -3,6 +3,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 apply {
@@ -47,6 +48,11 @@ dependencies {
 
     // Image
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+
+    // Jetpack Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
 
     // Unit testing
     testImplementation("junit:junit:4.13.2")

@@ -9,13 +9,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
 import com.biggerthannull.marvelheroes.feature.feed.ui.composables.screens.HomeFeedScreen
 import com.biggerthannull.marvelheroes.feature.feed.viewmodel.FeedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ComicsFeedFragment: Fragment() {
+class ComicsFeedFragment : Fragment() {
 
     private val viewModel: FeedViewModel by viewModels()
 
@@ -28,9 +29,16 @@ class ComicsFeedFragment: Fragment() {
             setContent {
                 val uiState by viewModel.uiState.collectAsState()
                 MarvelHeroesTheme {
-                    HomeFeedScreen(uiState = uiState)
+                    HomeFeedScreen(uiState = uiState) { id ->
+                        navigate(id)
+                    }
                 }
             }
         }
+    }
+
+    private fun navigate(id: Int) {
+        val action = ComicsFeedFragmentDirections.actionDetailsFragment(id)
+        findNavController().navigate(action)
     }
 }
