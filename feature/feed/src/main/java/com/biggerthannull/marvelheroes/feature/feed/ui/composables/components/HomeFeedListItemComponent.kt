@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBook
@@ -19,7 +21,10 @@ import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
 import com.biggerthannull.marvelheroes.feature.feed.ui.composables.elements.IconImageElement
 
 @Composable
-fun HomeFeedListItemComponent(comicBook: ReleasedComicBook, onComicBookClicked: (thumbnail: String) -> Unit) {
+fun HomeFeedListItemComponent(
+    comicBook: ReleasedComicBook,
+    onComicBookClicked: (thumbnail: String) -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -35,13 +40,19 @@ fun HomeFeedListItemComponent(comicBook: ReleasedComicBook, onComicBookClicked: 
             modifier = Modifier
                 .padding(8.dp)
                 .size(height = 110.dp, width = 85.dp)
-                .clip(MarvelHeroesTheme.shapes.medium),
+                .clip(MarvelHeroesTheme.shapes.medium)
+                .semantics {
+                    contentDescription = comicBook.thumbnail
+                },
             scale = ContentScale.FillBounds
         )
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .semantics {
+                    contentDescription = comicBook.title
+                },
             text = comicBook.title,
             maxLines = 2,
             style = MarvelHeroesTheme.typography.h3,

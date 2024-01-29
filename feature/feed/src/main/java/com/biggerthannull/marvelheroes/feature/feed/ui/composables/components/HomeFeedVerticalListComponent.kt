@@ -4,10 +4,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBook
 import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
+import org.jetbrains.annotations.TestOnly
+
+@TestOnly
+const val COMICS_LIST = "comicsList"
 
 @Composable
 fun HomeFeedVerticalListComponent(
@@ -15,12 +21,14 @@ fun HomeFeedVerticalListComponent(
     onComicBookClicked: (thumbnail: String) -> Unit
 ) {
     LazyColumn(
+        modifier = Modifier.testTag(COMICS_LIST),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {
         items(items = data, itemContent = { comicBook ->
             HomeFeedListItemComponent(
                 comicBook = comicBook,
-                onComicBookClicked = onComicBookClicked)
+                onComicBookClicked = onComicBookClicked
+            )
         })
     }
 }
