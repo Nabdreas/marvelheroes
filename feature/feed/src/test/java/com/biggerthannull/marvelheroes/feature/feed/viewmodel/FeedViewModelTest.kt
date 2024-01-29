@@ -8,7 +8,6 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -35,16 +34,28 @@ class FeedViewModelTest {
     }
 
     @Test
-    fun `verify that initial state is Loading`() = runTest {
+    fun `should load list of comics`() = runTest {
         // Given
         coEvery { getReleasedComicBooksUseCase.execute() } returns ComicsResult.Success(
             data = listOf(ViewTestData.releasedComicBook)
         )
 
         // When
-        val result = sut.uiState.first()
+        val result = sut.uiState.value
 
         // Then
-        assertTrue(result is FeedUIState.Loading)
+        assertTrue(result is FeedUIState.Success)
+    }
+
+    @Test
+    fun `should throw an error state`() = runTest {
+        // Given
+        coEvery { getReleasedComicBooksUseCase.execute() } returns ComicsResult.Failed
+
+        // When
+        val result = sut.uiState.value
+
+        // Then
+        assertTrue(result is FeedUIState.Error)
     }
 }

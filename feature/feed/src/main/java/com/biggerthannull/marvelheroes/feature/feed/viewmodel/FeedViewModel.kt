@@ -23,29 +23,12 @@ class FeedViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val result = getReleasedComicBooksUseCase.execute()
-            if (result is ComicsResult.Success) {
+            _uiState.value = if (result is ComicsResult.Success) {
                 FeedUIState.Success(result.data)
             } else {
                 FeedUIState.Error(R.string.generic_error_label)
             }
         }
     }
-
-
-//    val uiState: StateFlow<FeedUIState> = flow {
-//        val result = getReleasedComicBooksUseCase.execute()
-//        emit(
-//            if (result is ComicsResult.Success) {
-//                FeedUIState.Success(result.data)
-//            } else {
-//                FeedUIState.Error(R.string.generic_error_label)
-//            }
-//        )
-//    }
-//        .stateIn(
-//            scope = viewModelScope,
-//            started = SharingStarted.WhileSubscribed(),
-//            initialValue = FeedUIState.Loading
-//        )
 
 }
