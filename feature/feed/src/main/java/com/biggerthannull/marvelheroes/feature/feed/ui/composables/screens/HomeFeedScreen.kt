@@ -15,7 +15,7 @@ import com.biggerthannull.marvelheroes.feature.feed.ui.composables.elements.Load
 import com.biggerthannull.marvelheroes.feature.feed.viewmodel.state.FeedUIState
 
 @Composable
-fun HomeFeedScreen(uiState: FeedUIState, onComicBookClicked: (id: Int) -> Unit) {
+fun HomeFeedScreen(uiState: FeedUIState, onComicBookClicked: (thumbnail: String) -> Unit) {
     Column(
         modifier = Modifier
             .background(MarvelHeroesTheme.colour.black)
@@ -27,8 +27,8 @@ fun HomeFeedScreen(uiState: FeedUIState, onComicBookClicked: (id: Int) -> Unit) 
             }
 
             is FeedUIState.Success -> {
-                HomeFeedVerticalListComponent(data = uiState.comics, onComicBookClicked = { id ->
-                    onComicBookClicked(id)
+                HomeFeedVerticalListComponent(data = uiState.comics, onComicBookClicked = { thumbnail ->
+                    onComicBookClicked(thumbnail)
                 })
             }
 

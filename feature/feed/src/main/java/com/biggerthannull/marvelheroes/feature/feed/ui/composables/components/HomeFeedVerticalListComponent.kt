@@ -12,7 +12,7 @@ import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
 @Composable
 fun HomeFeedVerticalListComponent(
     data: List<ReleasedComicBook>,
-    onComicBookClicked: (id: Int) -> Unit
+    onComicBookClicked: (thumbnail: String) -> Unit
 ) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)

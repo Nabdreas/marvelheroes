@@ -29,16 +29,16 @@ class ComicsFeedFragment : Fragment() {
             setContent {
                 val uiState by viewModel.uiState.collectAsState()
                 MarvelHeroesTheme {
-                    HomeFeedScreen(uiState = uiState) { id ->
-                        navigate(id)
+                    HomeFeedScreen(uiState = uiState) { thumbnail ->
+                        navigate(thumbnail)
                     }
                 }
             }
         }
     }
 
-    private fun navigate(id: Int) {
-        val action = ComicsFeedFragmentDirections.actionDetailsFragment(id)
+    private fun navigate(thumbnail: String) {
+        val action = ComicsFeedFragmentDirections.actionDetailsFragment(thumbnail)
         findNavController().navigate(action)
     }
 }

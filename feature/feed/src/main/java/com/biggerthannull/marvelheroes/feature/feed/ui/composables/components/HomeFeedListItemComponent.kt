@@ -19,14 +19,14 @@ import com.biggerthannull.marvelheroes.feature.feed.theme.MarvelHeroesTheme
 import com.biggerthannull.marvelheroes.feature.feed.ui.composables.elements.IconImageElement
 
 @Composable
-fun HomeFeedListItemComponent(comicBook: ReleasedComicBook, onComicBookClicked: (id: Int) -> Unit) {
+fun HomeFeedListItemComponent(comicBook: ReleasedComicBook, onComicBookClicked: (thumbnail: String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp)
             .background(MarvelHeroesTheme.colour.grey800)
             .selectable(true, onClick = {
-                onComicBookClicked(comicBook.id)
+                onComicBookClicked(comicBook.thumbnail)
             }),
         verticalAlignment = Alignment.CenterVertically
     ) {

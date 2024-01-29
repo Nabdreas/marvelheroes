@@ -4,8 +4,6 @@ import com.biggerthannull.marvelheroes.data.comics.datasource.ComicBooksDataSour
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ComicsResultDTO
 import com.biggerthannull.marvelheroes.data.comics.datasource.models.ThumbnailDTO
 import com.biggerthannull.marvelheroes.domain.comics.repository.ComicsRepository
-import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetails
-import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicBookDetailsResult
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ComicsResult
 import com.biggerthannull.marvelheroes.domain.comics.usecase.models.ReleasedComicBook
 import javax.inject.Inject
@@ -25,18 +23,6 @@ class ComicsRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getComicBookDetails(id: Int): ComicBookDetailsResult {
-        return dataSource.getComicBookDetails(id).fold(
-            onSuccess = { response ->
-                val result = mapComicBookDTOToDetails(response.first())
-                ComicBookDetailsResult.Success(data = result)
-            },
-            onFailure = {
-                ComicBookDetailsResult.Failed
-            }
-        )
-    }
-
 
     private fun mapComicBookDTOToDomain(response: List<ComicsResultDTO>): List<ReleasedComicBook> {
         return response.map { comicBookDto ->
@@ -47,15 +33,6 @@ class ComicsRepositoryImpl @Inject constructor(
                 thumbnail = buildThumbnail(comicBookDto.thumbnail)
             )
         }
-    }
-
-    private fun mapComicBookDTOToDetails(response: ComicsResultDTO): ComicBookDetails {
-        return ComicBookDetails(
-            id = response.id,
-            title = response.title,
-            description = response.description,
-            thumbnail = buildThumbnail(response.thumbnail)
-        )
     }
 
     private fun buildThumbnail(thumbnail: ThumbnailDTO): String {

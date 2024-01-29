@@ -20,8 +20,8 @@
         android:name="com.biggerthannull.marvelheroes.feature.feed.ui.fragments.ComicBookDetailsFragment"
         android:label="ComicBookDetailsFragment">
         <argument
-            android:name="comicBookId"
-            app:argType="integer"
+            android:name="thumbnail"
+            app:argType="string"
             app:nullable="false" />
     </fragment>
 
